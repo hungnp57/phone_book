@@ -18,14 +18,19 @@ Route::get('/', 'WelcomeController@index');
 
 Route::get('home', 'HomeController@index');
 Route::get('/phong-ban/id={id}', 'PagesController@roomID');
+Route::get('/danh-sach-nhan-vien', 'PagesController@staff_list');
 Route::get('/phong-ban', 'PagesController@room');
+Route::post('/search', 'PagesController@search_post');
+Route::post('/search_home', 'PagesController@search_home');
+Route::get('/search_home', 'PagesController@search');
 Route::get('/tim-kiem', 'PagesController@search');
-Route::get('/danh-sach-lien-he', 'PagesController@contact');
+
 Route::get('/danh-sach-lien-he/id={id}', 'PagesController@contactID');
 Route::get('/danh-sach-cong-viec/id={id}', 'PagesController@work');
 Route::get('/timeline', 'PagesController@timeline');
 Route::get('/timeline/id={id}', 'PagesController@timelineID');
 Route::get('/lich-lam-viec/id={id}', 'PagesController@calendar');
+Route::post('/calendar','PagesController@calendar_post');
 Route::get('/them-nhan-vien', 'PagesController@addUser');
 Route::get('/thong-bao-he-thong', 'PagesController@systemContact');
 Route::get('/ho-so/id={id}', 'PagesController@profile');

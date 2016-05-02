@@ -20,59 +20,29 @@
           <!-- Small boxes (Stat box) -->
           @if (!Auth::guest())
           <div class="row">
+          
 
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-aqua">
-                <div class="inner">
-                  <h3>150</h3>
-                  <p>Tin nhắn mới</p>
+            <form class="col-lg-10 col-xs-10 col-md-10 center-block" role="search" style="float: none;" action="{{URL::to('search_home')}}" method="POST">
+            <input type="hidden" name="_token" value="{{ csrf_token() }}" >
+              <div class="input-group add-on">
+                <input class="form-control col-lg-12 col-xs-12 col-md-12 _input_search" placeholder="Tìm kiếm" name="srch_item" id="srch-term" type="text" style="height: 50px;">
+                <div class="input-group-btn ">
+                  <button class="btn btn-default send-msg" type="submit" style="height: 50px; width: 50px;"><i class="glyphicon glyphicon-search"></i></button>
                 </div>
-                <div class="icon">
-                  <i class="ion ion-bag"></i>
-                </div>
-                <a href="#" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
               </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-green">
-                <div class="inner">
-                  <h3>5<sup style="font-size: 20px">%</sup></h3>
-                  <p>Công việc cần hoàn thành</p>
+                <div class="checkbox col-lg-12 col-xs-12 col-md-12">
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" checked name="all">Tất cả</label>
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" name="room_number" id="cb1">Số phòng</label>
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" name="code">Mã nhân viên</label>
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" name="user_name">Tên nhân viên</label>
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" name="room_name">Tên phòng</label>
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" name="position">Chức vụ</label>
+                    <label class="col-lg-4 col-xs-4 col-md-4"><input type="checkbox" value="1" name="floor">Tầng</label>
+                    
                 </div>
-                <div class="icon">
-                  <i class="ion ion-stats-bars"></i>
+                <div class="output col-lg-12 col-xs-12 col-md-12">
                 </div>
-                <a href="#" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-yellow">
-                <div class="inner">
-                  <h3>4</h3>
-                  <p>Nhân viên mới</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-person-add"></i>
-                </div>
-                <a href="#" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
-            <div class="col-lg-3 col-xs-6">
-              <!-- small box -->
-              <div class="small-box bg-red">
-                <div class="inner">
-                  <h3>5</h3>
-                  <p>Thông báo phòng/ban</p>
-                </div>
-                <div class="icon">
-                  <i class="ion ion-pie-graph"></i>
-                </div>
-                <a href="#" class="small-box-footer">Chi tiết <i class="fa fa-arrow-circle-right"></i></a>
-              </div>
-            </div><!-- ./col -->
+            </form>
           </div><!-- /.row -->
           @endif
           <!-- Main row -->

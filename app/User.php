@@ -16,6 +16,7 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 *
 	 * @var string
 	 */
+	protected $primaryKey = 'id';
 	protected $table = 'users';
 
 	/**
@@ -31,5 +32,27 @@ class User extends Model implements AuthenticatableContract, CanResetPasswordCon
 	 * @var array
 	 */
 	protected $hidden = ['password', 'remember_token'];
+
+	public function room()
+    {
+        return $this->belongsTo('App\Room','roomID','id');
+    }
+    public function phoneNumber()
+    {
+        return $this->hasMany('App\PhoneNumber','user_id','id');
+    }
+    public function phoneType()
+    {
+        return $this->hasManyThrough('App\PhoneType', 'App\PhoneNumber', 'user_id', 'id');
+    }
+    public function dayTime()
+    {
+        return $this->hasMany('App\Day_time','id','user_id');
+    }
+    public function contactList()
+    {
+        return $this->hasMany('App\Contact_list','id','user_id');
+    }
+
 
 }

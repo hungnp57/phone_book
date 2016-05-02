@@ -1,4 +1,7 @@
 @extends('master')
+@section('css')
+<link rel="stylesheet" href="{{ asset('/css/user.css') }}" type="text/css">
+@stop
 @section('content')
 
 
@@ -33,12 +36,12 @@
               <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image col-lg-3" alt="User Image">
               <div class="u0">
                 <ul>
-                  <li><span class="u1">Nguyễn Phi Hùng</span></li>
+                  <li><span class="u1">{{$master['name']}}</span></li>
                   <li><span class="u2">Quản lý cấp cao</span></li>
-                  <li><span class="u3">SĐT: 8700</span></li>
-                  <li><span class="u3">Phòng: 101</span></li>
-                </div>
+                  <li><span class="u3">SĐT: {{$master['phone_number']}}</span></li>
+                  <li><span class="u3">Phòng: {{$master['room_number']}}</span></li>
                 </ul>
+              </div>
             </div>
           </div>
           </div>
@@ -48,58 +51,23 @@
             <div class="hr"></div>
           </div>
           <div class="col-lg-12 col-xs-12 col-md-12">
+          @foreach($employees as $employee)
           <div class="user-card col-md-5 col-lg-4 col-xs-12">
             <div class="user-card-content col-md-12 col-lg-12 col-xs-12">
               <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image col-lg-3" alt="User Image">
               <div class="u0">
                 <ul>
-                  <li><span class="u1">Nguyễn Tuấn Anh</span></li>
+                  <li><span class="u1">{{$employee['name']}}</span></li>
                   <li><span class="u2">Nhân viên</span></li>
-                  <li><span class="u3">SĐT: 8701</span></li>
-                  <li><span class="u3">Phòng: 101</span></li>
-                </div>
+                  <li><span class="u3">SĐT: {{$employee['phone_number']}}</span></li>
+                  <li><span class="u3">Phòng: {{$employee['room_number']}}</span></li>
+                
                 </ul>
+              </div>
             </div>
           </div>
-          <div class="user-card col-md-5 col-lg-4 col-xs-12">
-            <div class="user-card-content col-md-12 col-lg-12 col-xs-12">
-              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image col-lg-3" alt="User Image">
-              <div class="u0">
-                <ul>
-                  <li><span class="u1">Đào Minh Chính</span></li>
-                  <li><span class="u2">Nhân viên</span></li>
-                  <li><span class="u3">SĐT: 8702</span></li>
-                  <li><span class="u3">Phòng: 101</span></li>
-                </div>
-                </ul>
-            </div>
-          </div>
-          <div class="user-card col-md-5 col-lg-4 col-xs-12">
-            <div class="user-card-content col-md-12 col-lg-12 col-xs-12">
-              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image col-lg-3" alt="User Image">
-              <div class="u0">
-                <ul>
-                  <li><span class="u1">Đỗ Thị Ngọc</span></li>
-                  <li><span class="u2">Nhân viên</span></li>
-                  <li><span class="u3">SĐT: 8703</span></li>
-                  <li><span class="u3">Phòng: 101</span></li>
-                </div>
-                </ul>
-            </div>
-          </div>
-          <div class="user-card col-md-5 col-lg-4 col-xs-12">
-            <div class="user-card-content col-md-12 col-lg-12 col-xs-12">
-              <img src="{{asset('dist/img/user2-160x160.jpg')}}" class="user-image col-lg-3" alt="User Image">
-              <div class="u0">
-                <ul>
-                  <li><span class="u1">Nguyễn Xuân Phúc</span></li>
-                  <li><span class="u2">Nhân viên</span></li>
-                  <li><span class="u3">SĐT: 8704</span></li>
-                  <li><span class="u3">Phòng: 101</span></li>
-                </div>
-                </ul>
-            </div>
-          </div>
+          @endforeach
+          
           </div>
           
           

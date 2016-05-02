@@ -14,6 +14,7 @@ class VerifyCsrfToken extends BaseVerifier {
 	 */
 	public function handle($request, Closure $next)
 	{
+		echo $request->route('search');
 		return parent::handle($request, $next);
 	}
 

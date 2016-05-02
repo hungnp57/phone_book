@@ -3,6 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    @yield('meta')
     <title>Trang chủ quản lý danh bạ Trung tâm quản lý bay Hàng không Việt Nam</title>
     <!-- Tell the browser to be responsive to screen width -->
     <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
@@ -38,8 +39,8 @@
         <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
         <!-- jQuery 2.1.4 -->
-    <link rel="stylesheet" href="{{ asset('/css/user.css') }}" type="text/css">
-    <link rel="stylesheet" href="{{ asset('/css/profile.css') }}" type="text/css">
+        @yield('css')
+    
     <script src="{{ asset('/plugins/jQuery/jQuery-2.1.4.min.js') }}"></script>
     <!-- jQuery UI 1.11.4 -->
     <script src="{{ asset('/plugins/jQuery//jquery-ui.min-1.11.4.js') }}"></script>
@@ -477,21 +478,35 @@ function spawnNotification(theBody,theIcon,theTitle) {
             <li class="header">CÁC TÁC VỤ</li>
             @if (Auth::guest())
             <li><a href="{{URL::to('tim-kiem')}}"><i class="fa fa-search"></i> <span>Tra cứu nâng cao</span></a></li>
-            <li><a href="{{URL::to('danh-sach-lien-he')}}"><i class="fa fa-group"></i> <span>Danh sách liên hệ</span></a></li>
-            <li><a href="{{URL::to('timeline')}}"><i class="fa fa-rss"></i> <span>Timeline</span></a></li>
+            <li><a href="{{URL::to('danh-sach-nhan-vien')}}"><i class="fa fa-group"></i> <span>Danh sách nhân viên</span></a></li>
+            <li><a href="{{URL::to('in')}}"><i class="fa fa-rss"></i> <span>Danh sách in</span></a></li>
             <li><a href="{{URL::to('phong-ban')}}"><i class="fa fa-group"></i> <span>Danh sách phòng ban</span></a></li>
-            @else
+            
+            @elseif (Auth::user()->hasRole('admin'))
             <li><a href="{{URL::to('tim-kiem')}}"><i class="fa fa-search"></i> <span>Tra cứu nâng cao</span></a></li>
             <li><a href="{{URL::to('danh-sach-lien-he/id=')}}{{Auth::user()->id}}"><i class="fa fa-group"></i> <span>Danh sách liên hệ</span></a></li>
             <li><a href="{{URL::to('danh-sach-cong-viec/id=')}}{{Auth::user()->id}}"><i class="fa fa-list-alt"></i> <span>Danh sách công việc</span></a></li>
+            <li><a href="{{URL::to('danh-sach-nhan-vien')}}"><i class="fa fa-group"></i> <span>Danh sách nhân viên</span></a></li>
             <li><a href="{{URL::to('phong-ban')}}"><i class="fa fa-group"></i> <span>Danh sách phòng ban</span></a></li>
-            <li><a href="{{URL::to('/phong-ban/id=') }}{{Auth::user()->id}}"><i class="fa fa-building"></i> <span>Phòng ban của tôi</span></a></li>
+            <li><a href="{{URL::to('/phong-ban/id=') }}{{Auth::user()->room->first()->id}}"><i class="fa fa-building"></i> <span>Phòng ban của tôi</span></a></li>
             <li><a href="{{URL::to('timeline/id=')}}{{Auth::user()->id}}"><i class="fa fa-rss"></i> <span>Timeline</span></a></li>
             <li><a href="{{URL::to('lich-lam-viec/id=')}}{{Auth::user()->id}}"><i class="fa fa-calendar"></i> <span>Lịch làm việc</span></a></li>
             <li><a href="{{URL::to('them-nhan-vien')}}"><i class="fa fa-user-plus"></i> <span>Thêm nhân viên</span></a></li>
             <li><a href="{{URL::to('thong-bao-he-thong')}}"><i class="fa fa-wifi"></i> <span>Thông báo hệ thống</span></a></li>
             <li><a href="{{URL::to('ho-so/id=')}}{{Auth::user()->id}}"><i class="fa fa-newspaper-o"></i> <span>Hồ sơ</span></a></li>
             <li><a href="{{URL::to('thiet-lap/id=')}}{{Auth::user()->id}}"><i class="fa fa-gear"></i> <span>Thiết lập</span></a></li>        
+            
+            @else (Auth::user()->hasRole('user'))
+            <li><a href="{{URL::to('tim-kiem')}}"><i class="fa fa-search"></i> <span>Tra cứu nâng cao</span></a></li>
+            <li><a href="{{URL::to('danh-sach-lien-he/id=')}}{{Auth::user()->id}}"><i class="fa fa-group"></i> <span>Danh sách liên hệ</span></a></li>
+            <li><a href="{{URL::to('danh-sach-cong-viec/id=')}}{{Auth::user()->id}}"><i class="fa fa-list-alt"></i> <span>Danh sách công việc</span></a></li>
+            <li><a href="{{URL::to('danh-sach-nhan-vien')}}"><i class="fa fa-group"></i> <span>Danh sách nhân viên</span></a></li>
+            <li><a href="{{URL::to('phong-ban')}}"><i class="fa fa-group"></i> <span>Danh sách phòng ban</span></a></li>
+            <li><a href="{{URL::to('/phong-ban/id=') }}{{Auth::user()->room->first()->id}}"><i class="fa fa-building"></i> <span>Phòng ban của tôi</span></a></li>
+            <li><a href="{{URL::to('timeline/id=')}}{{Auth::user()->id}}"><i class="fa fa-rss"></i> <span>Timeline</span></a></li>
+            <li><a href="{{URL::to('lich-lam-viec/id=')}}{{Auth::user()->id}}"><i class="fa fa-calendar"></i> <span>Lịch làm việc</span></a></li>
+            <li><a href="{{URL::to('thong-bao-he-thong')}}"><i class="fa fa-wifi"></i> <span>Thông báo hệ thống</span></a></li>
+            <li><a href="{{URL::to('ho-so/id=')}}{{Auth::user()->id}}"><i class="fa fa-newspaper-o"></i> <span>Hồ sơ</span></a></li>       
             @endif
           </ul>
         </section>
@@ -705,5 +720,6 @@ function spawnNotification(theBody,theIcon,theTitle) {
     <script src="{{ asset('/dist/js/pages/dashboard.js') }}"></script>
     <!-- AdminLTE for demo purposes -->
     <script src="{{ asset('/dist/js/demo.js') }}"></script>
+    @yield('script')
   </body>
 </html>
